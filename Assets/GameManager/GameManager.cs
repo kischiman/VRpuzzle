@@ -45,11 +45,12 @@ namespace PUNTutorial
         void OnLevelWasLoaded(int levelNumber)
         {
             if (!PhotonNetwork.inRoom) return;
-
-            localPlayer = PhotonNetwork.Instantiate(
-                "Player",
-                new Vector3(0, 0.5f, 0),
-                Quaternion.identity, 0);
+            if (!PhotonNetwork.isMasterClient)
+            {
+                localPlayer = PhotonNetwork.Instantiate(
+                    "Player",
+                    new Vector3(0, 12f, 0), Quaternion.identity, 0);
+            }
         }
 
 
